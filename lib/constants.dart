@@ -10,13 +10,16 @@ List pages = [
 
   VideoScreen(),
   SearchScreen(),
-  AddVideoScreen(),
-  Text('Messages Screen'),
-  ProfileScreen(),
+ const AddVideoScreen(),
+ const  Center(child: Text('Messages Screen')),
+   ProfileScreen(),
   //UploadImageScreen(),
 ];
 
 // COLORS
-var backgroundColor = Colors.black;
-var buttonColor = Colors.red[400];
+var backgroundColor = Color(0xffF5646B);
+var buttonColor =Color(0xffff4a00);
+//logomakr.com/app/98VVca
+//ff4a00
+//ffc7618
 const borderColor = Colors.grey;

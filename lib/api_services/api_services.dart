@@ -34,7 +34,7 @@ Future register(var photourl,var username,var email,var password)async{
       Uri.parse('${ApiConfig().baseurl}register'),
       headers: ApiConfig().headers,
       body:jsonEncode({
-        "profilepicture":photourl,
+        "profilepicture":'',
         "name":username,
         "email":email,
         "password":password,

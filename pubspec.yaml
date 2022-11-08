@@ -48,6 +48,7 @@ dependencies:
   permission_handler: ^10.0.0
   screenshot: ^1.2.3
   image_cropper: ^2.0.2
+  lottie: ^1.4.3
 
 
 
@@ -78,10 +79,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - images/upload.jpg
-     - images/smile.png
-     - images/memegenrator.png
      - images/logo.png
+     - images/splashscreen.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

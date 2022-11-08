@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:memz/constants.dart';
 import 'package:memz/views/screens/auth/signup_screen.dart';
-import 'package:memz/views/widgets/text_input_field.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../../api_services/api_services.dart';
 import '../../../models/login_model.dart';
 import '../../widgets/dialog.dart';
 import '../home_screen.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final storage =  FlutterSecureStorage();
+  final storage = FlutterSecureStorage();
   final TextEditingController _nameController = TextEditingController();
 
   final TextEditingController _passwordController = TextEditingController();
@@ -27,36 +27,28 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SingleChildScrollView(
         child: Container(
-
           alignment: Alignment.center,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height:60),
-              Image.asset('images/logo.png',
-                width: 120,height:120,color: buttonColor,),
-               Text(
-                  'Memestagram',
-                  style: TextStyle(
-                    fontSize: 35,
-                    color: buttonColor,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
 
-              const Text(
-                'Login',
+            children: [
+
+              Image.asset(
+                'images/logo.png',
+                width: 500,
+                height: 200,
+                color: buttonColor,
+              ),
+
+              Text(
+                'login',
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(
-                height: 25,
-              ),
+
               Container(
                 width: MediaQuery.of(context).size.width,
                 margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -70,14 +62,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     labelStyle: TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: buttonColor!)),
+                        borderRadius: BorderRadius.circular(10.0),),
+
                     focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: buttonColor!)),
+                        borderRadius: BorderRadius.circular(10.0),),
+
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: buttonColor!)),
+                        //borderSide: BorderSide(color: buttonColor!)
+                       ),
                     labelText: 'Username',
                   ),
                 ),
@@ -109,13 +102,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     labelStyle: TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: buttonColor!)),
+         ),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: buttonColor!)),
+                    ),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: buttonColor!)),
+                    ),
                     labelText: 'Password',
                   ),
                 ),
@@ -123,14 +116,12 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 30,
               ),
-          Container(
-              width: 190,
-              height: 50,
-
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(30)),
-                  color: buttonColor),
-
+              Container(
+                width: 190,
+                height: 50,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                    color: Colors.blue),
                 child: InkWell(
                   onTap: () {
                     setState(() {
@@ -153,18 +144,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           spin = false;
                         });
                         Login data = value;
-                        print(data.message);
-                        print(data.login);
-                        print(data.token);
                         if (data.login == false) {
                           setState(() {
                             spin = false;
                           });
-                          Dilog().showMyDialog(context, value.message.toString());
+                          Dilog()
+                              .showMyDialog(context, value.message.toString());
                         } else if (data.token != null && data.login == true) {
                           await storage.write(key: "token", value: data.token);
                           print(_nameController.text.toString());
-                          await storage.write(key: "username", value: _nameController.text);
+                          await storage.write(
+                              key: "username", value: _nameController.text);
 
                           Navigator.pushAndRemoveUntil(
                               context,
@@ -182,6 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ? Text(
                             'Login',
                             style: TextStyle(
+                              color: Colors.white,
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
                             ),

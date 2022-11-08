@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:memz/constants.dart';
-import 'package:memz/controllers/auth_controller.dart';
 import 'package:memz/views/screens/auth/login_screen.dart';
-import 'package:memz/views/widgets/text_input_field.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../api_services/api_services.dart';
 import '../../../models/register_model.dart';
 import '../../widgets/dialog.dart';
-import 'dart:io';
 
 class SignupScreen extends StatefulWidget {
-  SignupScreen({Key? key}) : super(key: key);
+  const SignupScreen({Key? key}) : super(key: key);
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -38,21 +35,14 @@ class _SignupScreenState extends State<SignupScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 40),
+              const SizedBox(height: 60),
               Image.asset(
                 'images/logo.png',
-                width: 120,
-                height: 120,
+                width: 500,
+                height: 200,
                 color: buttonColor,
               ),
-              Text(
-                'Memestagram',
-                style: TextStyle(
-                  fontSize: 35,
-                  color: buttonColor,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
+
               const Text(
                 'Register',
                 style: TextStyle(
@@ -70,20 +60,20 @@ class _SignupScreenState extends State<SignupScreen> {
                   cursorColor: buttonColor,
                   controller: _usernameController,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.person,
                       color: Colors.grey,
                     ),
-                    //labelStyle: TextStyle(color: buttonColor),
+                    labelStyle: const TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: buttonColor!)),
+                    ),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: buttonColor!)),
+                    ),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: buttonColor!)),
+                        ),
                     labelText: 'Username',
                   ),
                 ),
@@ -95,22 +85,23 @@ class _SignupScreenState extends State<SignupScreen> {
                 width: MediaQuery.of(context).size.width,
                 margin: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextFormField(
+                  cursorColor: buttonColor,
                   controller: _emailController,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.email,
                       color: Colors.grey,
                     ),
-                    //labelStyle: TextStyle(color: buttonColor),
+                    labelStyle: const TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: buttonColor!)),
+                        ),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: buttonColor!)),
+                 ),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: buttonColor!)),
+                    ),
                     labelText: 'Email',
                   ),
                 ),
@@ -125,7 +116,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   cursorColor: buttonColor,
                   controller: _passwordController,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.lock,
                       color: Colors.grey,
                     ),
@@ -139,16 +130,16 @@ class _SignupScreenState extends State<SignupScreen> {
                           !visible ? Icons.visibility_off : Icons.visibility,
                           color: buttonColor,
                         )),
-                    //labelStyle: TextStyle(color: buttonColor),
+                    labelStyle: const TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: buttonColor!)),
+                       ),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: buttonColor!)),
+                        ),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: buttonColor!)),
+                        ),
                     labelText: 'Password',
                   ),
                 ),
@@ -177,9 +168,9 @@ class _SignupScreenState extends State<SignupScreen> {
               Container(
                 width: 190,
                 height: 50,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(30)),
-                    color: buttonColor),
+                    color: Colors.blue),
                 child: InkWell(
                   onTap: () {
                     setState(() {
@@ -195,8 +186,6 @@ class _SignupScreenState extends State<SignupScreen> {
                         _passwordController.text,
                       ).then((data) {
                         Register value = data;
-                        print(value.registred);
-                        print(value.message);
                         if (value.registred == false) {
                           setState(() {
                             spin = false;
@@ -208,7 +197,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             spin = false;
                           });
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => LoginScreen()));
+                              builder: (context) => const LoginScreen()));
                           Dilog().showMyDialog2(
                               context, "Registered Successfully");
                           _usernameController.clear();
@@ -226,22 +215,19 @@ class _SignupScreenState extends State<SignupScreen> {
                       setState(() {
                         spin = false;
                       });
-
-
-                      Dilog().showMyDialog(
-                          context, "please select profile picture");
                     }
                   },
                   child: Center(
                     child: !spin
-                        ? Text(
+                        ? const Text(
                             'Register',
                             style: TextStyle(
+                              color: Colors.white,
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
                             ),
                           )
-                        : CircularProgressIndicator(
+                        : const CircularProgressIndicator(
                             color: Colors.white,
                           ),
                   ),
@@ -254,7 +240,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    'Already have an account? ',
+                    'Already have an account?',
                     style: TextStyle(
                       fontSize: 20,
                     ),
@@ -262,7 +248,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   InkWell(
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => LoginScreen(),
+                        builder: (context) => const LoginScreen(),
                       ),
                     ),
                     child: Text(
@@ -279,70 +265,69 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  // bottomsheet() {
-  //   return showModalBottomSheet<void>(
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.only(
-  //           topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
-  //     ),
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return Container(
-  //         height: 220,
-  //         child: Center(
-  //           child: Column(
-  //             mainAxisAlignment: MainAxisAlignment.center,
-  //             children: <Widget>[
-  //               Text("choose Photo",
-  //                   style: TextStyle(
-  //                     fontSize: 20.0,
-  //                   )),
-  //               SizedBox(height: 10.0),
-  //               Divider(
-  //                 height: 10,
-  //               ),
-  //               Row(
-  //                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //                 children: [
-  //                   ElevatedButton.icon(
-  //                     onPressed: () {
-  //                       takephoto(ImageSource.camera);
-  //                     },
-  //                     label: Text(
-  //                       "camera",
-  //                       style: TextStyle(
-  //                         fontSize: 20,
-  //                       ),
-  //                     ),
-  //                     icon: Icon(
-  //                       Icons.camera,
-  //                       size: 40,
-  //                     ),
-  //                   ),
-  //                   ElevatedButton.icon(
-  //                     onPressed: () {
-  //                       takephoto(ImageSource.gallery);
-  //                     },
-  //                     label: Text(
-  //                       "Gallery",
-  //                       style: TextStyle(
-  //                         fontSize: 20,
-  //                       ),
-  //                     ),
-  //                     icon: Icon(
-  //                       Icons.image,
-  //                       size: 40,
-  //                     ),
-  //                   ),
-  //                 ],
-  //               )
-  //             ],
-  //           ),
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
-
+bottomSheet() {
+  return showModalBottomSheet<void>(
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
+    ),
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        height: 220,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text("choose Photo",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  )),
+              const SizedBox(height: 10.0),
+              const Divider(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: () {
+                     // takephoto(ImageSource.camera);
+                    },
+                    label: const Text(
+                      "camera",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    icon: const Icon(
+                      Icons.camera,
+                      size: 40,
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                     // takephoto(ImageSource.gallery);
+                    },
+                    label: const Text(
+                      "Gallery",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    icon: const Icon(
+                      Icons.image,
+                      size: 40,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
 
 }

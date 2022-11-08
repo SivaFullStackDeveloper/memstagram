@@ -1,16 +1,10 @@
-
 import 'package:flutter/material.dart';
-import 'package:memz/constants.dart';
-import 'package:memz/constants.dart';
-import 'package:memz/controllers/auth_controller.dart';
-import 'package:memz/models/login_model.dart';
 import 'package:memz/views/screens/auth/login_screen.dart';
-import 'package:memz/views/screens/auth/signup_screen.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:memz/views/screens/home_screen.dart';
 
-void main() async{
-  runApp(MyApp());
+void main() async {
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -21,21 +15,20 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final storage = FlutterSecureStorage();
-  Widget ?screen;
-  var token ;
+  final storage = const FlutterSecureStorage();
+  Widget? screen;
+  var token;
+
   checktoken() async {
-     token =  await storage.read(key: 'token');
+    token = await storage.read(key: 'token');
     if (token != null) {
-      print(token.toString());
       setState(() {
-        screen = HomeScreen();
+        screen = const HomeScreen();
       });
     } else {
-      setState((){
+      setState(() {
         screen = LoginScreen();
       });
-
     }
   }
 
@@ -50,9 +43,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Memestagram',
-      theme: ThemeData.dark().copyWith(
-        //scaffoldBackgroundColor: Colors.white,
-      ),
+
       home: screen,
     );
   }

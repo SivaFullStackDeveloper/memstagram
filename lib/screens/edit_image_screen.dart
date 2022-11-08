@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:memz/constants.dart';
 import 'package:memz/widgets/edit_image_viewmodel.dart';
 import 'package:memz/widgets/image_text.dart';
 import 'package:screenshot/screenshot.dart';
